@@ -1,360 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR Galaxy</title>
-    <!-- import aframe and then ar.js with image tracking / location based features -->
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kanit&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <!-- style for the loader -->
-  <style>
-    .arjs-loader {
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    <link rel="stylesheet" href="./style.css">
+</head>
 
-    .arjs-loader div {
-      text-align: center;
-      font-family: "Kanit", sans-serif;
-      font-size: 1.5em;
-      color: white;
-    }
-  </style>
+<body style="margin : 0px; overflow: hidden;">
+  <div class="arjs-loader">
+    <div>กรุณารอโหลดสักครู่...</div>
+  </div>
 
-  <body style="margin: 0px; overflow: hidden;">
-    <div class="arjs-loader">
-      <div>กรุณารอโหลดสักครู่...แอ่</div>
-    </div>
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
 
-    <a-scene
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
-      embedded
-      artoolkit="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-    >
-      <a-assets>
+    <a-assets>
+
         <script>
-          AFRAME.registerComponent("vidhandler", {
+            AFRAME.registerComponent('vidhandler', {
             init: function () {
-              this.toggle = false;
-              document.querySelectorAll(".content").forEach((el) => el.pause()); //reference to the video
-              document
-                .querySelectorAll("a-video")
-                .forEach((el) => el.setAttribute("visible", false));
-              document
-                .querySelectorAll("a-image")
-                .forEach((el) => el.setAttribute("visible", false));
+            this.toggle = false;
+            document.querySelectorAll(".video").forEach(el=> el.pause()); //reference to the video
             },
             tick: function () {
               if (
-                document.querySelector("#nft-milk").object3D.visible == true
+                document.querySelector("#nft-dark").object3D.visible == true
               ) {
                 if (!this.toggle) {
                   this.toggle = true;
-                  document
-                    .querySelector("#con-milk")
-                    .setAttribute("visible", true);
-                  document.querySelector("#milk").play();
+                  document.querySelector("#dark").play();
                 }
               } else if (
                 document.querySelector("#nft-greek").object3D.visible == true
               ) {
                 if (!this.toggle) {
                   this.toggle = true;
-                  document
-                    .querySelector("#con-greek")
-                    .setAttribute("visible", true);
                   document.querySelector("#greek").play();
                 }
               } else if (
-                document.querySelector("#nft-elip").object3D.visible == true
+                document.querySelector("#nft-ed").object3D.visible == true
               ) {
                 if (!this.toggle) {
                   this.toggle = true;
-                  document
-                    .querySelector("#con-elip")
-                    .setAttribute("visible", true);
-                  document.querySelector("#elip").play();
+                  document.querySelector("#ed").play();
                 }
               } else if (
-                document.querySelector("#nft-earth").object3D.visible == true
+                document.querySelector("#nft-sgx").object3D.visible == true
               ) {
                 if (!this.toggle) {
                   this.toggle = true;
-                  document
-                    .querySelector("#con-earth")
-                    .setAttribute("visible", true);
-                  document.querySelector("#earth").play();
+                  document.querySelector("#sgx").play();
                 }
               } else if (
-                document.querySelector("#nft-dark").object3D.visible == true
+                document.querySelector("#nft-mfe").object3D.visible == true
               ) {
                 if (!this.toggle) {
                   this.toggle = true;
-                  document
-                    .querySelector("#con-dark")
-                    .setAttribute("visible", true);
-                  document.querySelector("#dark").play();
-                }
-              } else if (
-                document.querySelector("#nft-blue").object3D.visible == true
-              ) {
-                if (!this.toggle) {
-                  this.toggle = true;
-                  document
-                    .querySelector("#con-blue")
-                    .setAttribute("visible", true);
-                  document.querySelector("#blue").play();
-                }
-              } else if (
-                document.querySelector("#nft-thai").object3D.visible == true
-              ) {
-                if (!this.toggle) {
-                  this.toggle = true;
-                  document
-                    .querySelector("#con-thai")
-                    .setAttribute("visible", true);
-                }
-              } else if (
-                document.querySelector("#nft-hubble").object3D.visible == true
-              ) {
-                if (!this.toggle) {
-                  this.toggle = true;
-                  document
-                    .querySelector("#con-hubble")
-                    .setAttribute("visible", true);
+                  document.querySelector("#mfe").play();
                 }
               } else {
                 this.toggle = false;
                 document
-                  .querySelectorAll(".content")
+                  .querySelectorAll(".video")
                   .forEach((el) => el.pause());
-                document
-                  .querySelectorAll("a-video")
-                  .forEach((el) => el.setAttribute("visible", false));
-                document
-                  .querySelectorAll("a-image")
-                  .forEach((el) => el.setAttribute("visible", false));
-              }
+                }
             },
-          });
+            });
         </script>
-        <video
-          id="milk"
-          autoplay
-          loop="true"
-          src="./assets/milkyWay.mp4"
-          class="content"
-        ></video>
-        <video
-          id="greek"
-          autoplay
-          loop="true"
-          src="./assets/greek.mp4"
-          class="content"
-        ></video>
-        <video
-          id="elip"
-          autoplay
-          loop="true"
-          src="./assets/elip.mp4"
-          class="content"
-        ></video>
-        <video
-          id="earth"
-          autoplay
-          loop="true"
-          src="./assets/earth.mp4"
-          class="content"
-        ></video>
-        <video
-          id="dark"
-          class="content"
-          autoplay
-          loop="true"
-          src="./assets/dark.mp4"
-        ></video>
-        <video
-          id="blue"
-          class="content"
-          autoplay
-          loop="true"
-          src="./assets/blue.mp4"
-        ></video>
-        <img id="thai" src="./assets/thai.jpg" />
-        <img id="hubble" src="./assets/hubble.jpg" />
-      </a-assets>
+        <video class="video" id="dark" autoplay loop="true" src="https://cdn.glitch.com/1d46662e-f6e0-42e1-aa91-0a01a20b12d3%2Fdm.mp4?v=1596220725802"></video>
+        <video class="video" id="ed" autoplay loop="true" src="https://cdn.glitch.com/1d46662e-f6e0-42e1-aa91-0a01a20b12d3%2Fed.mp4?v=1596220940369"></video>
+        <video class="video" id="greek" autoplay loop="true" src="https://cdn.glitch.com/1d46662e-f6e0-42e1-aa91-0a01a20b12d3%2Fgreek.mp4?v=1596220647203"></video>
+        <video class="video" id="mfe" autoplay loop="true" src="https://cdn.glitch.com/1d46662e-f6e0-42e1-aa91-0a01a20b12d3%2Fearth.mp4?v=1596220633568"></video>
+        <video class="video" id="sgx" autoplay loop="true" src="https://cdn.glitch.com/1d46662e-f6e0-42e1-aa91-0a01a20b12d3%2FmilkyWay.mp4?v=1596220771448"></video>
+    </a-assets>
 
-      <a-nft
+        <a-nft
         type="nft"
-        url="./assets/2"
+        url="./marks/dark"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5"
-        id="nft-milk"
-      >
-        <a-video
-          src="#milk"
-          scale="1 1 1"
-          position="100 0 -50"
-          rotation="-90 0 0"
-          id="con-milk"
-          vidhandler
-        ></a-video>
-      </a-nft>
-
-      <a-nft
-        type="nft"
-        url="./assets/3"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        id="nft-greek"
-      >
-        <a-video
-          src="#greek"
-          scale="100 50 1"
-          position="50 0 -30"
-          rotation="-90 0 0"
-          id="con-greek"
-          vidhandler
-        ></a-video>
-      </a-nft>
-
-      <a-nft
-        type="nft"
-        url="./assets/4"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        id="nft-elip"
-      >
-        <a-video
-          src="#elip"
-          width="200"
-          height="100"
-          position="100 0 -50"
-          rotation="-90 0 0"
-          id="con-elip"
-          vidhandler
-        ></a-video>
-      </a-nft>
-
-      <a-nft
-        type="nft"
-        url="./assets/5"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        id="nft-earth"
-      >
-        <a-video
-          src="#earth"
-          width="200"
-          height="100"
-          position="100 0 -50"
-          rotation="-90 0 0"
-          id="con-earth"
-          vidhandler
-        ></a-video>
-      </a-nft>
-
-      <a-nft
-        type="nft"
-        url="./assets/7"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
+        vidhandler
         id="nft-dark"
-      >
-        <a-video
-          src="#dark"
-          width="200"
-          height="100"
-          position="100 0 -50"
-          rotation="-90 0 0"
-          id="con-dark"
-          vidhandler
-        ></a-video>
-      </a-nft>
-
-      <a-nft
+        >
+            <a-video src="#dark" scale="10 5 5" position="0 0 0" rotation="-90 0 0"></a-video>
+        </a-nft>
+        
+        
+        <a-nft
         type="nft"
-        url="./assets/8"
+        url="./marks/sgx"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5"
-        id="nft-blue"
-      >
-        <a-video
-          src="#blue"
-          width="200"
-          height="100"
-          position="100 0 -50"
-          rotation="-90 0 0"
-          id="con-blue"
-          vidhandler
-        ></a-video>
-      </a-nft>
-      <a-nft
+        vidhandler
+        id="nft-sgx"
+        >
+            <a-video src="#sgx" scale="1 1 1" position="0 0 0" rotation="-90 0 0"></a-video>
+        </a-nft>
+        
+        <a-nft
         type="nft"
-        url="./assets/6"
+        url="./marks/mfe"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5"
-        id="nft-thai"
-      >
-        <a-image
-          src="#thai"
-          width="200"
-          height="100"
-          position="100 0 -50"
-          rotation="-90 0 0"
-          id="con-thai"
-        ></a-image>
-      </a-nft>
+        vidhandler
+        id="nft-mfe"
+        >
+            <a-video src="#mfe" width="16" height="9" position="0 0 -20"></a-video>
+        </a-nft>
 
-      <a-nft
+        
+        <a-nft
         type="nft"
-        url="./assets/9"
+        url="./marks/greek"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5"
-        id="nft-hubble"
-      >
-        <a-image
-          src="#hubble"
-          width="100"
-          height="150"
-          position="80 0 -50"
-          rotation="-90 0 0"
-          id="con-hubble"
-        ></a-image>
-      </a-nft>
+        vidhandler
+        id="nft-greek"
+        >
+            <a-video src="#greek" width="16" height="9" position="0 0 -20"></a-video>
+        </a-nft>
+            
+        <a-nft
+        type="nft"
+        url="./marks/ed"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
+        vidhandler
+        id="nft-ed"
+        >
+            <a-video src="#ed" width="16" height="9" position="0 0 -20"></a-video>
+        </a-nft>
 
-      <a-entity camera></a-entity>
+        <a-entity camera></a-entity>
     </a-scene>
-  </body>
+</body>
+    
+</body>
 </html>
