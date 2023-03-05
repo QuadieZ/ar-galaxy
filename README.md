@@ -1,5 +1,5 @@
 # ARGalaxy
-An educational AR web application about space and galaxy. \n 
+An educational AR web application about space and galaxy. \
 Created as a part of a high school science course (2020)
 
 ## Stack
